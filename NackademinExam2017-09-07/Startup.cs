@@ -40,7 +40,7 @@ namespace NackademinExam2017_09_07
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +63,8 @@ namespace NackademinExam2017_09_07
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            DatabaseInitializer.Initialize(context);
         }
     }
 }
