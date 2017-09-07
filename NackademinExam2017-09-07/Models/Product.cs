@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NackademinExam20170907.Models
+namespace NackademinExam2017_09_07.Models
 {
     public class Product
     {
