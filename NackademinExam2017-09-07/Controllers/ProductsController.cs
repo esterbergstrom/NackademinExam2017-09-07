@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using NackademinExam2017_09_07.Data;
 using NackademinExam2017_09_07.Models;
 using Microsoft.Extensions.Logging;
+using NackademinExam2017_09_07.Services;
 
 namespace NackademinExam2017_09_07.Controllers
 {
@@ -15,11 +16,13 @@ namespace NackademinExam2017_09_07.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
+        private readonly IProductCategoryService _productCategoryService;
 
-        public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger)
+        public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger, IProductCategoryService productCategoryService)
         {
             _context = context;
             _logger = logger;
+            _productCategoryService = productCategoryService;
         }
 
         // GET: Products
@@ -50,7 +53,7 @@ namespace NackademinExam2017_09_07.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewBag.ProductCategories = new SelectList(_context.ProductCategories.ToList(), "ProductCategoryId", "Name");
+            ViewBag.ProductCategories = _productCategoryService.GetSelectList();
             return View();
         }
 
@@ -78,7 +81,7 @@ namespace NackademinExam2017_09_07.Controllers
                 return NotFound();
             }
 
-            ViewBag.ProductCategories = new SelectList(_context.ProductCategories.ToList(), "ProductCategoryId", "Name");
+            ViewBag.ProductCategories = _productCategoryService.GetSelectList();
 
             var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
