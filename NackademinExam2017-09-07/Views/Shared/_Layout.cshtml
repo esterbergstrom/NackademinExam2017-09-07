@@ -22,6 +22,7 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <p style="color: grey; position: absolute; top: 0; left: 0;">@HostingEnvironment.EnvironmentName</p>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -40,15 +41,13 @@
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
-            <p style="color: grey;">@HostingEnvironment.EnvironmentName</p>
+            @*<p ></p>*@
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2017 - NackademinExam2017_09_07</p>
-        </footer>
+        @Html.Partial("_Footer")
     </div>
 
     <environment include="Development">
