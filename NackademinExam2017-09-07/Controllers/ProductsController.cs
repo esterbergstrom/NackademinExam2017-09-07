@@ -46,6 +46,7 @@ namespace NackademinExam2017_09_07.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewBag.ProductCategories = new SelectList(_context.ProductCategories.ToList());
             return View();
         }
 
@@ -72,6 +73,8 @@ namespace NackademinExam2017_09_07.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.ProductCategories = new SelectList(_context.ProductCategories.ToList());
 
             var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
