@@ -7,21 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NackademinExam2017_09_07.Data;
 using NackademinExam2017_09_07.Models;
+using Microsoft.Extensions.Logging;
 
 namespace NackademinExam2017_09_07.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger _logger;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            _logger.LogWarning("With great power comes great responsibility");
             return View(await _context.Products.ToListAsync());
         }
 
