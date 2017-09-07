@@ -29,6 +29,11 @@ namespace NackademinExam2017_09_07.Controllers
             return View();
         }
 
+        public IActionResult Products()
+        {
+            return RedirectToAction("Index", "Products");
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
