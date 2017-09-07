@@ -13,5 +13,8 @@ namespace NackademinExam2017_09_07.Models
         public string Name { get; set; }
         [Range(5, 1000)]
         public decimal Price { get; set; }
+
+        public int ProductCategoryId { get; set; }
+        public ProductCategory ProductCategory { get; set; }
     }
 }
