@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Hosting
+@inject IHostingEnvironment HostingEnvironment
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -37,6 +40,7 @@
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
+            <p style="color: grey;">@HostingEnvironment.EnvironmentName</p>
         </div>
     </nav>
     <div class="container body-content">
